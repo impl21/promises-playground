@@ -19,6 +19,6 @@
     "webpack-dev-server": "1.14.1"
   },
   "scripts": {
-    "start": "webpack-dev-server --inline --content-base --progress --colors ."
+    "start": "webpack-dev-server --content-base ."
   }
 }

@@ -2,22 +2,32 @@ var webpack = require('webpack');
 var HtmlWebpackPlugin = require('html-webpack-plugin');
 var path = require('path');
 module.exports = {
-    entry: {
-        app: [
-            'webpack-dev-server/client?http://127.0.0.1:8080/',
-            './web/src/index.js'
-        ]
-    },
+    entry: './web/src/index.js',
 
     output: {
-        path: __dirname,
-        filename: '[name].js',
+        filename: 'bundle.js',
         publicPath: ''
     },
 
     module: {
         loaders: [
-            { test: /\.js$/, exclude: /node_modules/, loader: 'babel-loader?presets[]=es2015' }
+            {
+                test: /\.js$/,
+                exclude: /node_modules/,
+                loader: 'babel',
+                query: {
+                    presets: ['es2015']
+                }
+            }
         ]
+    },
+    plugins: [
+        new HtmlWebpackPlugin({template: path.resolve(__dirname, './web/index.html'), inject: true})
+    ],
+    devServer: {
+        port: 3000,
+        inline: true,
+        colors: true,
+        progress: true
     }
 };
